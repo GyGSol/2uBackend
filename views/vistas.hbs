@@ -1,0 +1,53 @@
+<div class="container" style="margin-top:20px">
+    <!--Fila 1 -->
+    <div class="row">
+        <div class="col-8">
+            <div class="header"><h2>User login: {{userName}}</h2></div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/admin/principal">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <!--Fila 2 -->
+    <div class="row" style="margin-top:20px">
+        <div class="col-8">
+            <h2>Ingreso Vista</h2>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/vistas/agregar">
+                <i class="fa-solid fa-mountain-sun" style="color: #7a3fa1;">  NUEVA VISTA</i></a>
+        </div>
+    </div>
+    <!--Fila 3 -->
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr class="table-info">
+                        <th scope="col">#</th>
+                        <th scope="col">Vista</th>
+                        <th scope="col" class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each vistas}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{vista}}</td>
+                        <td class="text-end">
+                            <a class="btn btn-light" href="/vistas/modificar/{{id}}">
+                                <i class="fa fa-pencil" style="color: #7a3fa1;" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-light" href="/vistas/delete/{{id}}">
+                                <i class="fa fa-trash" style="color: #7a3fa1;" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

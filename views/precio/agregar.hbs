@@ -1,0 +1,57 @@
+<!--id, precio, costo, rentaPorcentual, idMes -->
+<div class="container" style="margin:40px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Agregar Precio</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/precios">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/precios" method="post">
+            <div class="col-md-6">
+                <label for="precio" class="form-label">Precio Final &euro;</label>
+                <input type="number" class="form-control" name="precio">
+            </div>
+            <div class="col-md-6">
+                <label for="costo" class="form-label">Costo &euro;</label>
+                <input type="number" class="form-control" name="costo">
+            </div>
+            <div class="col-md-12">
+                <label for="rentaPorcentual" class="form-label">Renta Porcentual %</label>
+                <input type="text" class="form-control" name="rentaPorcentual">
+            </div>
+            <div class="col-md-4">
+                <label for="idCasa" class="form-label">Meses</label>
+                <select name="idCasa" class="form-select">
+                    <option name="idCasa" selected>Villas...</option>
+                    {{#each casas}}
+                    <option name="idCasa" value="{{id}}">{{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="idMes" class="form-label">Meses</label>
+                <select name="idMes" class="form-select">
+                    <option name="idMes" selected>Meses...</option>
+                    {{#each meses}}
+                    <option name="idMes" value="{{id}}">{{mes}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                    <i class="fa-solid fa-money-check-dollar" style="color: #7a3fa1;"> INGRESAR</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+            <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<!--nombre, apellido, nacionalidad, documento, email, telefono, movil -->
+<div class="container" style="margin:40px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Agregar Usuario</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/usuarios">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/usuarios" method="post">
+            <div class="col-md-6">
+                <label for="usuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control" name="usuario">
+            </div>
+            <div class="col-md-6">
+                <label for="pass" class="form-label">Clave</label>
+                <input type="password" class="form-control" name="pass">
+            </div>            
+            <div class="col-md-4">
+                <label for="rol" class="form-label">Rol</label>
+                <select name="rol" class="form-select">
+                    <option selected>Roles...</option>
+                    {{#each roles}}
+                    <option value="{{id}}">{{rol}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                     <i class="fa-regular fa-user" style="color: #7a3fa1;"> Ingresar</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+            <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

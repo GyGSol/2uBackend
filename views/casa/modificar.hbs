@@ -1,0 +1,93 @@
+<!--nombre, dormitorios, linkpdf, linkvideo, linkimagen, propietario, baños -->
+<div class="container" style="margin:10px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Modificar Casas</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/casas">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/casas/modificar" method="post" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" value="{{casa.nombre}}">
+            </div>
+            
+            <div class="col-md-6">
+                <label for="linkpdf" class="form-label">link del PDF</label>
+                <input type="text" class="form-control" name="linkpdf" value="{{casa.linkpdf}}">
+            </div>
+            <div class="col-md-6">
+                <label for="linkvideo" class="form-label">link del Video</label>
+                <input type="text" class="form-control" name="linkvideo" value="{{casa.linkvideo}}">
+            </div>
+            <div class="col-md-3">
+                <label for="dormitorios" class="form-label">Dormitorios</label>
+                <input type="number" class="form-control" name="dormitorios" value="{{casa.dormitorios}}">
+            </div>
+            <div class="col-md-3">
+                <label for="banos" class="form-label">Baños</label>
+                <input type="text" class="form-control" name="banos" value="{{casa.banos}}">
+            </div>
+            <div class="col-md-6">
+                <label for="id" class="form-label">ID</label>
+                <input type="text" class="form-control" name="id" value="{{casa.id}}">
+            </div>
+            <div class="col-md-6">
+                <label for="propietario" class="form-label">Propietario</label>
+                <select name="propietario" class="form-select">
+                    <option value="{{casa.idPropietario}}">{{casa.propietario}}</option>
+                    {{#each propietarios}}
+                    <option name="propietario" value="{{id}}">{{apellido}}, {{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="vista" class="form-label">Vista</label>
+                <select name="vista" class="form-select">
+                    <option value="{{casa.idVista}}">Actual: {{casa.vista}}</option>
+                    {{#each vistas}}
+                    <option value="{{id}}">{{vista}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="area" class="form-label">Area</label>
+                <select name="area" class="form-select">
+                    <option value="{{casa.idArea}}">Actual: {{casa.area}}</option>
+                    {{#each areas}}
+                    <option value="{{id}}">{{area}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" name="imagen">
+            </div>
+
+            <div class="col-md-3">
+                <label for="imagenActual" class="form-label">Imagen actual: {{casa.linkimagen}}</label>
+                <input type="hidden" class="form-control" name="imagenActual" value="{{casa.linkimagen}}">
+            </div>
+            <div class="col-3">
+                <label><input type="checkbox" name="eliminarImagen" value="1">
+                    Eliminar imagen actual?
+                </label>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                     <i class="fa-regular fa-calendar-plus" style="color: #7a3fa1;"> MODIFICAR</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+        <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<!--id, nombre, apellido, tax -->
+<div class="container" style="margin:40px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Agregar Propietario</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/propietarios">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/propietarios" method="post">
+            <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre">
+            </div>
+            <div class="col-md-6">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" name="apellido">
+            </div>
+             <div class="col-md-6">
+                <label for="tax" class="form-label">TAX</label>
+                <input type="number" class="form-control" name="tax">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                    <i class="fa-solid fa-user-tie" style="color: #7a3fa1;"> INGRESAR</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+            <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

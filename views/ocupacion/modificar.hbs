@@ -1,0 +1,48 @@
+<!-- id, casa, fechaDesde, fechaHasta -->
+<div class="container" style="margin:40px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Modificar Ocupación</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/ocupaciones">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/ocupaciones/modificar" method="post">
+            <div class="col-md-6">
+                <label for="fechaDesde" class="form-label">Fecha Desde</label>
+                <input type="date" class="form-control" name="fechaDesde" value="{{ocupacion.fechaDesde}}">
+            </div>
+            <div class="col-md-6">
+                <label for="fechaHasta" class="form-label">Fecha Hasta</label>
+                <input type="date" class="form-control" name="fechaHasta" value="{{ocupacion.fechaHasta}}">
+            </div>
+            <div class="col-md-6">
+                <label for="casa" class="form-label">Alojamiento</label>
+                <select name="casa" class="form-select">
+                    <option value="{{ocupacion.idCasa}}">Asignada: {{ocupacion.casa}}</option>
+                    {{#each casas}}
+                    <option value="{{id}}">{{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+             <div class="col-md-6">
+                <label for="id" class="form-label">ID: # {{ocupacion.id}}</label>
+                <input type="text" class="form-control" name="id" value="{{ocupacion.id}}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                    <i class="fa-solid fa-money-check-dollar" style="color: #7a3fa1;"> MODIFICAR</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+        <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

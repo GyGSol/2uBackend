@@ -1,0 +1,44 @@
+<!--id, precio, costo, rentaPorcentual, idMes -->
+<div class="container" style="margin:40px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Agregar Ocupación</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/ocupaciones">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/ocupaciones" method="post">
+            <div class="col-md-6">
+                <label for="fechaDesde" class="form-label">Fecha Desde</label>
+                <input type="date" class="form-control" name="fechaDesde">
+            </div>
+            <div class="col-md-6">
+                <label for="fechaHasta" class="form-label">Fecha Hasta</label>
+                <input type="date" class="form-control" name="fechaHasta">
+            </div>
+            <div class="col-md-4">
+                <label for="casa" class="form-label">Alojamientos</label>
+                <select name="casa" class="form-select">
+                    <option selected>Villas...</option>
+                    {{#each casas}}
+                    <option value="{{id}}">{{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                    <i class="fa-solid fa-money-check-dollar" style="color: #7a3fa1;"> INGRESAR</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+            <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

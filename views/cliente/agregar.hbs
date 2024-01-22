@@ -1,0 +1,60 @@
+<!--nombre, apellido, nacionalidad, documento, email, telefono, movil -->
+<div class="container" style="margin:40px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Agregar Cliente</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/clientes">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/clientes" method="post">
+            <div class="col-md-6">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" name="apellido">
+            </div>
+            <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre">
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email">
+            </div>
+            <div class="col-md-6">
+                <label for="movil" class="form-label">Movil</label>
+                <input type="text" class="form-control" name="movil">
+            </div>
+            <div class="col-md-6">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" name="telefono">
+            </div>
+            <div class="col-md-6">
+                <label for="documento" class="form-label">Documento</label>
+                <input type="text" class="form-control" name="documento">
+            </div>
+            <div class="col-md-4">
+                <label for="nacionalidad" class="form-label">Nacionalidad</label>
+                <select name="nacionalidad" class="form-select">
+                    <option selected>Paises...</option>
+                    {{#each paises}}
+                    <option>{{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                     <i class="fa-regular fa-user" style="color: #7a3fa1;"> Ingresar</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+            <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

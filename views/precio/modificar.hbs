@@ -1,0 +1,52 @@
+<!-- id, precio, costo, rentaPorcentual, idMes -->
+<div class="container" style="margin:40px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Modificar Precio de {{precio.nombre}}</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/precios">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/precios/modificar" method="post">
+            <div class="col-md-6">
+                <label for="precio" class="form-label">Precio Final &euro;</label>
+                <input type="number" class="form-control" name="precio" value="{{precio.precio}}">
+            </div>
+            <div class="col-md-6">
+                <label for="costo" class="form-label">Costo &euro;</label>
+                <input type="number" class="form-control" name="costo" value="{{precio.costo}}">
+            </div>
+            <div class="col-md-6">
+                <label for="linkpdf" class="form-label">Renta Porcentual %</label>
+                <input type="number" class="form-control" name="rentaPorcentual" value="{{precio.rentaPorcentual}}">
+            </div>
+            <div class="col-md-6">
+                <label for="idMes" class="form-label">Meses</label>
+                <select name="idMes" class="form-select">
+                    <option name="idMes">Asignado: {{precio.mes}}</option>
+                    {{#each meses}}
+                    <option name="idMes" value="{{id}}">{{mes}}</option>
+                    {{/each}}
+                </select>
+            </div>
+             <div class="col-md-6">
+                <label for="id" class="form-label">ID: # {{precio.id}}</label>
+                <input type="text" class="form-control" name="id" value="{{precio.id}}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                    <i class="fa-solid fa-money-check-dollar" style="color: #7a3fa1;"> MODIFICAR</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+        <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>
