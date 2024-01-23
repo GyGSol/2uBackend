@@ -20,6 +20,7 @@ var vistasRouter = require('./routes/vistas');
 var usuariosRouter = require('./routes/usuarios');
 var ocupacionesRouter = require('./routes/ocupaciones');
 var areasRouter = require('./routes/areas');
+var nosotrosRouter = require('./routes/nosotros');
 
 var session = require('express-session');
 var fileUpload = require('express-fileupload');
@@ -78,6 +79,7 @@ app.use('/usuarios',secured, usuariosRouter);
 app.use('/ocupaciones',secured, ocupacionesRouter);
 app.use('/areas',secured, areasRouter);
 app.use('/api',cors(), apiRouter);
+app.use('/nosotros',secured, nosotrosRouter);
 
 
 

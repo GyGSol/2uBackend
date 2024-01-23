@@ -10,6 +10,7 @@ var mesesModel = require("../models/mesesModel");
 var ocupacionModel = require("../models/ocupacionModel");
 var preciosModel = require("../models/preciosModel");
 var userModel = require("../models/userModel");
+var nosotrosModel = require("../models/nosotrosModel");
 
 var cloudinary = require("cloudinary").v2;
 
@@ -56,6 +57,31 @@ router.get("/casas", async function (req, res, next) {
   router.get("/mesesPrecio", async function (req, res, next) {
     var mesesPrecio = await mesesModel.getMesesMostrar();
     res.json(mesesPrecio);
+  });
+
+  router.get("/nosotros", async function (req, res, next) {
+    var nosotros = await nosotrosModel.getNosotros();
+    nosotros = nosotros.map((nos) => {
+      
+      if (nos.linkimagen) {
+        const imagen = cloudinary.url(nos.linkimagen, {
+          width: 386,
+          height: 548,
+          crop: "fill",
+        });
+        return {
+          ...nos,
+          imagen
+        };
+      } else {
+        return {
+          ...nos,
+          imagen: ""
+        };
+      }
+    });
+  
+    res.json(nosotros[0]);
   });
 
   module.exports = router;
