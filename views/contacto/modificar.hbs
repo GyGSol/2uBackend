@@ -1,0 +1,48 @@
+<!--nombre, apellido, nacionalidad, documento, email, telefono, movil -->
+<div class="container" style="margin:10px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Modificar Texto e Imagen de Contacto</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/contactos">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/contactos/modificar" method="post" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <label for="texto1" class="form-label">Primer texto</label>
+                <textarea class="form-control" name="texto1" value="{{contacto.texto1}}">{{contacto.texto1}}</textarea>
+            </div>
+             <div class="col-md-1">
+                <label for="id" class="form-label">ID</label>
+                <input type="text" class="form-control" name="id" value="{{contacto.id}}">
+            </div>
+            <div class="col-md-5">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" name="imagen">
+            </div>
+            <div class="col-md-3">
+                <label for="imagenActual" class="form-label">Imagen actual: {{contacto.linkimagen}}</label>
+                <input type="hidden" class="form-control" name="imagenActual" value="{{contacto.linkimagen}}">
+            </div>
+            <div class="col-2">
+                <label><input type="checkbox" name="eliminarImagen" value="1">
+                    Eliminar imagen actual?
+                </label>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                     <i class="fa-regular fa-calendar-plus" style="color: #7a3fa1;"> MODIFICAR</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+        <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

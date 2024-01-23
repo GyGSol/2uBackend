@@ -1,0 +1,35 @@
+<!--nombre, apellido, nacionalidad, documento, email, telefono, movil -->
+<div class="container" style="margin:40px auto">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h2>Agregar Texto y Imagen de Contacto</h2>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a class="btn btn-light" href="/contactos">
+                <i class="fa-solid fa-backward" style="color: #7a3fa1;"> Volver</i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <form class="row g-3" action="/contactos" method="post" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <label for="texto1" class="form-label">Primer Texto</label>
+                <input type="text" class="form-control" name="texto1">
+            </div>
+            <div class="col-md-6">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" name="imagen">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">
+                     <i class="fa-regular fa-calendar-plus" style="color: #7a3fa1;"> INGRESAR</i>
+                </button>
+            </div>
+        </form>
+        {{#if error}}
+            <p>{{mensaje}}</p>
+        {{/if}}
+    </div>
+</div>

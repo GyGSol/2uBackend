@@ -11,6 +11,7 @@ var ocupacionModel = require("../models/ocupacionModel");
 var preciosModel = require("../models/preciosModel");
 var userModel = require("../models/userModel");
 var nosotrosModel = require("../models/nosotrosModel");
+var contactoModel = require("../models/contactoModel");
 
 var cloudinary = require("cloudinary").v2;
 
@@ -82,6 +83,31 @@ router.get("/casas", async function (req, res, next) {
     });
   
     res.json(nosotros[0]);
+  });
+
+  router.get("/contactos", async function (req, res, next) {
+    var contacto = await contactoModel.getContactos();
+    contacto = contacto.map((contac) => {
+      
+      if (contac.linkimagen) {
+        const imagen = cloudinary.url(contac.linkimagen, {
+          width: 509,
+          height: 544,
+          crop: "fill",
+        });
+        return {
+          ...contac,
+          imagen
+        };
+      } else {
+        return {
+          ...contac,
+          imagen: ""
+        };
+      }
+    });
+  
+    res.json(contacto[0]);
   });
 
   module.exports = router;
