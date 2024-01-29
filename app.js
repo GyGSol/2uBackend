@@ -22,6 +22,7 @@ var ocupacionesRouter = require('./routes/ocupaciones');
 var areasRouter = require('./routes/areas');
 var nosotrosRouter = require('./routes/nosotros');
 var contactosRouter = require('./routes/contactos');
+var personalRouter = require('./routes/personal');
 
 var session = require('express-session');
 var fileUpload = require('express-fileupload');
@@ -82,6 +83,7 @@ app.use('/areas',secured, areasRouter);
 app.use('/api',cors(), apiRouter);
 app.use('/nosotros',secured, nosotrosRouter);
 app.use('/contactos',secured, contactosRouter);
+app.use('/personal',secured, personalRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

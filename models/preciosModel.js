@@ -4,7 +4,7 @@ async function getPrecios() {
   try {
     var query = "SELECT p.id, c.nombre, p.precio, p.costo, p.rentaPorcentual, m.mes  FROM precios p "
     +"INNER JOIN meses m ON m.id = p.idMes "
-    +"INNER JOIN casas c ON c.id = p.idCasa ;";
+    +"INNER JOIN casas c ON c.id = p.idCasa ORDER BY c.nombre ;";
     var rows = await pool.query(query);
     return rows;
   } catch (error) {
@@ -17,7 +17,7 @@ async function getPrecio(id) {
     var query = "SELECT p.id, c.nombre, p.precio, p.costo, p.rentaPorcentual, m.mes FROM precios p "
     +"INNER JOIN meses m on m.id =p.idMes "
     +"INNER JOIN casas c ON c.id = p.idCasa "
-    +"WHERE p.id = ?";
+    +"WHERE p.id = ? ;" ;
     var rows = await pool.query(query, id);
     return rows[0];
   } catch (error) {

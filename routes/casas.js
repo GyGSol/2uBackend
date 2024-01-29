@@ -42,7 +42,7 @@ router.get("/", async function (req, res, next) {
   });
 });
 /**
- * id, nombre, dormitorios, linkpdf, linkvideo, linkimagen, propietario, baños
+ * id, nombre, dormitorios, linkpdf, linkvideo, linkimagen, propietario, baños, pax
  */
 router.post("/", async (req, res, next) => {
   try {
@@ -149,6 +149,7 @@ router.post("/modificar", async function (req, res, next) {
       banos: req.body.banos,
       vista: req.body.vista,
       area: req.body.area,
+      pax: req.body.pax,
       linkimagen,
     };
     console.log(obj);
