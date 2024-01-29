@@ -157,13 +157,42 @@ router.post("/contacto", async (req, res, next) => {
     message: "Mensaje enviado",
   });
 });
+let dataFrom={};
+router.post("/searchFrom", async (req, res, next) => {
+  dataFrom=req.body;
+  res.status(201).json({
+    error: false,
+    message: "Mensaje enviado",
+  });
+});
 
 router.post("/search", async (req, res, next) => {
-  const html = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>2U Ibiza</title></head><body><h1>'+req.body.nombreCliente+'</h1</body></html>';
-    const mail = {
+  var respuesta = await casasModel.getCasas();
+  const parametros = req.body;
+  console.log("req.body", parametros);
+  var html =
+    '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">';
+  html += "<h1>" + dataFrom.nombreCliente + "</h1>";
+  html += "<h5>Solicitudes especiales: " + dataFrom.especial + "</h5>";
+  html += "<h5>Arrival day: " + dataFrom.fechaDesde + "</h5>";
+  html += "<h5>Departure day: " + dataFrom.fechaHasta + "</h5>";
+  html += "<h6>Approximate budget / Week: " + dataFrom.importe + "</h6>";
+  parametros.map((item) => {
+    html += "<br><h1>" + item.nombre + "</h1>";
+    html += "<h2>" + item.dormitorios + " Bedrooms</h2>";
+    html += "<h2>Views: " + item.vista + "</h2>";
+    html += "<p>" + item.dormitorios + " Bathrooms</p>";
+    html += "<div><a href=" + item.linkpdf + ">PDF</a></div>";
+    html += "<div><a href=" + item.linkvideo + ">VIDEO</a></div>";
+    html +=
+      '<div><img style="border-radius:15px" src=' + item.imagen + "></div>";
+    html += "<h4>Location: " + item.vista + "</h4>";
+  });
+
+  const mail = {
     to: "info@2uibiza.com",
     subject: "Contacto web",
-    html: html
+    html: html,
   };
 
   const transport = nodemailer.createTransport({
@@ -174,7 +203,7 @@ router.post("/search", async (req, res, next) => {
       pass: process.env.SMTP_PASS,
     },
   }); // cierra transp
- 
+
   await transport.sendMail(mail);
 
   res.status(201).json({
