@@ -129,13 +129,13 @@ router.post("/modificar", async function (req, res, next) {
     if (req.body.eliminarImagen === "1") {
       linkimagen = null;
       imagenVieja = true;
-    } else {
-      if (req.files && Object.keys(req.files).length > 0) {
-        imagen = req.files.imagen;
-        linkimagen = (await uploader(imagen.tempFilePath)).public_id;
-        imagenVieja = true;
-      }
     }
+    if (req.files && Object.keys(req.files).length > 0) {
+      imagen = req.files.imagen;
+      linkimagen = (await uploader(imagen.tempFilePath)).public_id;
+      imagenVieja = true;
+    }
+    
     if (imagenVieja && req.body.imagenActual) {
       await destroy(req.body.imagenActual);
     }

@@ -133,12 +133,13 @@ router.get("/personal", async function (req, res, next) {
 });
 
 router.post("/contacto", async (req, res, next) => {
+  
   const mail = {
     to: "info@2uibiza.com",
     subject: "Contacto web",
-    html: req.body.nombre 
-    +" se contacto a traves de la web y quiere más informacion a este correo: "
-    +req.body.email+"<br><b> Además, hizo el siguiente comentario: "+req.body.mensaje+"</b>"
+    html: "<h6>"+req.body.nombre+"</h6>"
+    +"<p>Se contacto a traves de la web y quiere más informacion a este correo: "+req.body.email+"</p>"
+    +"<p><b> Además, hizo el siguiente comentario: "+req.body.mensaje+"</b></p>"
   };
 
   const transport = nodemailer.createTransport({
@@ -169,7 +170,7 @@ router.post("/searchFrom", async (req, res, next) => {
 router.post("/search", async (req, res, next) => {
   var respuesta = await casasModel.getCasas();
   const parametros = req.body;
-  console.log("req.body", parametros);
+  
   var html =
     '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">';
   html += "<h1>" + dataFrom.nombreCliente + "</h1>";
@@ -191,7 +192,7 @@ router.post("/search", async (req, res, next) => {
 
   const mail = {
     to: "info@2uibiza.com",
-    subject: "Contacto web",
+    subject: "Properties search",
     html: html,
   };
 
