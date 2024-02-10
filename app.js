@@ -69,7 +69,7 @@ app.use(fileUpload({
 app.use('/', indexRouter);
 
 app.use('/admin/login', loginRouter);
-app.use('/admin/principal',secured, principalRouter);
+app.use('/admin/principal', principalRouter);
 
 app.use('/clientes',secured, clientesRouter);
 app.use('/precios',secured, preciosRouter);
