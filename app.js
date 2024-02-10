@@ -74,7 +74,7 @@ app.use('/admin/principal', principalRouter);
 app.use('/clientes',secured, clientesRouter);
 app.use('/precios',secured, preciosRouter);
 app.use('/meses',secured, mesesRouter);
-app.use('/casas',secured, casasRouter);
+app.use('/casas', casasRouter);
 app.use('/propietarios',secured, propietariosRouter);
 app.use('/vistas',secured, vistasRouter);
 app.use('/usuarios',secured, usuariosRouter);
