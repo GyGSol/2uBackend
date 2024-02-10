@@ -171,25 +171,29 @@ router.post("/search", async (req, res, next) => {
   var respuesta = await casasModel.getCasas();
   const parametros = req.body;
   
-  var html =
-    '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">';
-  html += "<h1>" + dataFrom.nombreCliente + "</h1>";
-  html += "<h5>Solicitudes especiales: " + dataFrom.especial + "</h5>";
-  html += "<h5>Arrival day: " + dataFrom.fechaDesde + "</h5>";
-  html += "<h5>Departure day: " + dataFrom.fechaHasta + "</h5>";
-  html += "<h6>Approximate budget / Week: " + dataFrom.importe + "</h6>";
+  var html ='<!DOCTYPE html>';
+  html += '<head>';
+  html += '<meta charset="utf-8">';
+  html += '<meta name="viewport" content="width=device-width, initial-scale=1">';
+  html += '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">'
+  html += '<body>';
+  html += '<h1>' + dataFrom.nombreCliente + '</h1>';
+  html += '<h5>Email: ' + dataFrom.email + '</h5>';
+  html += '<h5>Solicitudes especiales: ' + dataFrom.especial + '</h5>';
+  html += '<h5>Arrival day: ' + dataFrom.fechaDesde + '</h5>';
+  html += '<h5>Departure day: ' + dataFrom.fechaHasta + '</h5>';
+  html += '<h6>Approximate budget / Week: ' + dataFrom.importe + '</h6>';
   parametros.map((item) => {
-    html += "<br><h1>" + item.nombre + "</h1>";
-    html += "<h2>" + item.dormitorios + " Bedrooms</h2>";
-    html += "<h2>Views: " + item.vista + "</h2>";
-    html += "<p>" + item.dormitorios + " Bathrooms</p>";
-    html += "<div><a href=" + item.linkpdf + ">PDF</a></div>";
-    html += "<div><a href=" + item.linkvideo + ">VIDEO</a></div>";
-    html +=
-      '<div><img style="border-radius:15px" src=' + item.imagen + "></div>";
-    html += "<h4>Location: " + item.vista + "</h4>";
+    html += '<br><h1>' + item.nombre + '</h1>';
+    html += '<h2>' + item.dormitorios + " Bedrooms</h2>";
+    html += '<h2>Views: ' + item.vista + '</h2>';
+    html += '<p>' + item.dormitorios + " Bathrooms</p>";
+    html += '<div><a href=' + item.linkpdf + '>PDF</a></div>';
+    html += '<div><a href=' + item.linkvideo + '>VIDEO</a></div>';
+    html += '<div><img style="border-radius:15px" src=' + item.imagen + '></div>';
+    html += '<h4>Location: ' + item.vista + '</h4>';
   });
-
+  html += '</body></html>';
   const mail = {
     to: "info@2uibiza.com",
     subject: "Properties search",
