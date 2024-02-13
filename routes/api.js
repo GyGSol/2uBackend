@@ -211,12 +211,12 @@ router.post("/search", async (req, res, next) => {
   
   const transport = nodemailer.createTransport({
     service: "Gmail",
-    host: "smtp.gmail.com",
+    host: process.env.SMTP_HOST,
     port: 465,
     secure: true,
     auth: {
-      user: "gonzalomlopolito@gmail.com",
-      pass: "eidt rfzd pylg osix",
+      user: process.env.SMTP_USE,
+      pass: process.env.SMTP_PASS,
     },
   });
 
