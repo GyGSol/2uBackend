@@ -25,7 +25,7 @@ async function getUser(user, pass) {
 
 async function getUserId(id) {
   try {
-    var query ="SELECT u.id, u.usuario, u.pass, r.rol FROM usuarios u "
+    var query ="SELECT u.id, u.usuario, u.pass, r.rol, r.idRol FROM usuarios u "
               +"LEFT JOIN roles r ON r.id = u.rol "
               +"WHERE u.id = ? limit 1;";
     var rows = await pool.query(query,id);

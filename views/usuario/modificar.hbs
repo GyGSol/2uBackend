@@ -25,7 +25,7 @@
             <div class="col-md-6">
                 <label for="rol" class="form-label">Rol</label>
                 <select name="rol" class="form-select">
-                    <option>{{usuario.rol}}</option>
+                    <option value={{usuario.idRol}}>{{usuario.rol}}</option>
                     {{#each roles}}
                     <option value={{id}}>{{rol}}</option>
                     {{/each}}
