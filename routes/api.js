@@ -209,7 +209,7 @@ router.post("/search", async (req, res, next) => {
     },
   }); // cierra transp
   
-  const transporter = nodemailer.createTransport({
+  const transport = nodemailer.createTransport({
     service: "Gmail",
     host: "smtp.gmail.com",
     port: 465,
