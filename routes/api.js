@@ -200,14 +200,25 @@ router.post("/search", async (req, res, next) => {
     html: html,
   };
 
-  const transport = nodemailer.createTransport({
+  /*const transport2 = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: 2525,
     auth: {
       user: process.env.SMTP_USE,
       pass: process.env.SMTP_PASS,
     },
-  }); // cierra transp
+  }); // cierra transp*/
+  
+  const transport = nodemailer.createTransport({
+    service: "Gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "gonzalomlopolito@gmail.com",
+      pass: "eidt rfzd pylg osix",
+    },
+  });
 
   await transport.sendMail(mail);
 
