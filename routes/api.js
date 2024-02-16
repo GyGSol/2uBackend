@@ -134,22 +134,36 @@ router.get("/personal", async function (req, res, next) {
 
 router.post("/contacto", async (req, res, next) => {
   
+  var html ='<!DOCTYPE html>';
+  html += '<html>'
+  html += '<head>';
+  html += '<meta charset="utf-8">';
+  html += '<meta name="viewport" content="width=device-width, initial-scale=1">';
+  html += '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">'
+  html += '</head>';
+  html += '<body>';
+  html += '<h2>'+req.body.nombre+'</h2>';
+  html += '<p>Se contacto a traves de la web y quiere más informacion a este correo: '+req.body.email+'</p>'
+  html += '<p>Además, hizo el siguiente comentario: <b>'+req.body.mensaje+'</b></p>'
+  html += '</body></html>';
+
   const mail = {
-    to: "info@2uibiza.com",
+    to: "gonzalomlopolito@gmail.com",
     subject: "Contacto web",
-    html: "<h6>"+req.body.nombre+"</h6>"
-    +"<p>Se contacto a traves de la web y quiere más informacion a este correo: "+req.body.email+"</p>"
-    +"<p><b> Además, hizo el siguiente comentario: "+req.body.mensaje+"</b></p>"
+    html: html
   };
 
   const transport = nodemailer.createTransport({
+    service: "Gmail",
     host: process.env.SMTP_HOST,
-    port: 2525,
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.SMTP_USE,
       pass: process.env.SMTP_PASS,
     },
-  }); // cierra transp
+  });
+
   console.log("env",process.env.SMTP_PASS);
   await transport.sendMail(mail);
 
@@ -172,10 +186,12 @@ router.post("/search", async (req, res, next) => {
   const parametros = req.body;
   
   var html ='<!DOCTYPE html>';
+  html += '<html>'
   html += '<head>';
   html += '<meta charset="utf-8">';
   html += '<meta name="viewport" content="width=device-width, initial-scale=1">';
   html += '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">'
+  html += '</head>';
   html += '<body>';
   html += '<h1>' + dataFrom.nombreCliente + '</h1>';
   html += '<h5>Email: ' + dataFrom.email + '</h5>';
@@ -188,14 +204,14 @@ router.post("/search", async (req, res, next) => {
     html += '<h2>' + item.dormitorios + " Bedrooms</h2>";
     html += '<h2>Views: ' + item.vista + '</h2>';
     html += '<p>' + item.dormitorios + " Bathrooms</p>";
-    html += '<div><a href=' + item.linkpdf + '>PDF</a></div>';
-    html += '<div><a href=' + item.linkvideo + '>VIDEO</a></div>';
+    html += '<h4><a style="text-decoration: none" href=' + item.linkpdf + '>PDF</a></h4>';
+    html += '<h4><a style="text-decoration: none" href=' + item.linkvideo + '>VIDEO</h4>';
     html += '<div><img style="border-radius:15px" src=' + item.imagen + '></div>';
     html += '<h4>Location: ' + item.vista + '</h4>';
   });
   html += '</body></html>';
   const mail = {
-    to: "laura@2uibiza.com",
+    to: "gonzalomlopolito@gmail.com",
     subject: "Properties search",
     html: html,
   };
