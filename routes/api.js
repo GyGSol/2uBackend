@@ -205,7 +205,9 @@ router.post("/search", async (req, res, next) => {
     html += '<h4>Views: ' + item.vista + '</h4>';
     html += '<p>' + item.dormitorios + " Bathrooms</p>";
     html += '<h4><a style="text-decoration: none" href=' + item.linkpdf + '>PDF</a></h4>';
-    html += '<h4><a style="text-decoration: none" href=' + item.linkvideo + '>VIDEO</h4>';
+    if(item.linkvideo !== ""){
+      html += '<h4><a style="text-decoration: none" href=' + item.linkvideo + '>VIDEO</h4>';
+    }
     html += '<div><img style="border-radius:15px" src=' + item.imagen + '></div>';
     html += '<h4>Location: ' + item.vista + '</h4>';
   });
