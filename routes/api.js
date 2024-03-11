@@ -212,7 +212,9 @@ router.post("/search", async (req, res, next) => {
   });
   html += '</body></html>';
   const mail = {
-    to: "gonzalomlopolito@gmail.com",
+    to: "laura@2uibiza.com",
+    cc: "carmen@2uibiza.com",
+    cco: "gonzalomlopolito@gmail.com",
     subject: "Properties search",
     html: html,
   };
