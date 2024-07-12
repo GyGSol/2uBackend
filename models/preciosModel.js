@@ -3,8 +3,8 @@ const pool = require("./bd");
 async function getPrecios() {
   try {
     var query = "SELECT p.id, c.nombre, p.precio, p.costo, p.rentaPorcentual, m.mes  FROM precios p "
-    +"INNER JOIN meses m ON m.id = p.idMes "
-    +"INNER JOIN casas c ON c.id = p.idCasa ORDER BY c.nombre ;";
+    +"LEFT JOIN meses m ON m.id = p.idMes "
+    +"LEFT JOIN casas c ON c.id = p.idCasa ORDER BY c.nombre ;";
     var rows = await pool.query(query);
     return rows;
   } catch (error) {
@@ -15,8 +15,8 @@ async function getPrecios() {
 async function getPrecio(id) {
   try {
     var query = "SELECT p.id, c.nombre, p.precio, p.costo, p.rentaPorcentual, m.mes FROM precios p "
-    +"INNER JOIN meses m on m.id =p.idMes "
-    +"INNER JOIN casas c ON c.id = p.idCasa "
+    +"LEFT JOIN meses m on m.id =p.idMes "
+    +"LEFT JOIN casas c ON c.id = p.idCasa "
     +"WHERE p.id = ? ;" ;
     var rows = await pool.query(query, id);
     return rows[0];
