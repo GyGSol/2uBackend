@@ -29,7 +29,7 @@
             <div class="col-md-6">
                 <label for="idMes" class="form-label">Meses</label>
                 <select name="idMes" class="form-select">
-                    <option name="idMes">{{(precio.mes !== '' ? 'Asignado: '+precio.mes : 'Sin asignar: '+precio.mes)}}</option>
+                    <option name="idMes">Mes: {{precio.mes}}</option>
                     {{#each meses}}
                     <option name="idMes" value="{{id}}">{{mes}}</option>
                     {{/each}}
