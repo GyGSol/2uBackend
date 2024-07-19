@@ -12,6 +12,17 @@ async function getOcupaciones() {
   }
 }
 
+async function getOcupacionesCasas() {
+  try {
+    var query = "SELECT o.fechaDesde fechaDesde, o.fechaHasta, o.casa FROM ocupaciones o ;";
+    var rows = await pool.query(query);
+
+    return rows;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function getOcupacion(id) {
   try {
     var query = "SELECT o.id, DATE_FORMAT(o.fechaDesde,'%Y-%m-%d') fechaDesde, DATE_FORMAT(o.fechaHasta,'%Y-%m-%d') fechaHasta, c.nombre casa, o.casa idCasa FROM ocupaciones o "
@@ -51,4 +62,4 @@ async function deleteOcupacion(id) {
     return rows;
 
 }
-module.exports = { getOcupaciones, getOcupacion , addOcupacion, updateOcupacion, deleteOcupacion};
+module.exports = { getOcupaciones, getOcupacion , addOcupacion, updateOcupacion, deleteOcupacion, getOcupacionesCasas};

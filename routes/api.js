@@ -9,14 +9,17 @@ var paisesModel = require("../models/paisesModel");
 var mesesModel = require("../models/mesesModel");
 var nosotrosModel = require("../models/nosotrosModel");
 var contactoModel = require("../models/contactoModel");
+var ocupacionesModel = require("../models/ocupacionModel");
 
 var cloudinary = require("cloudinary").v2;
 
 router.get("/casas", async function (req, res, next) {
   var casas = await casasModel.getCasas();
   var preciosMes = await mesesModel.getMesesMostrar();
+  var ocupacionCasa = await ocupacionesModel.getOcupacionesCasas();
   casas = casas.map((casa) => {
     const precio = preciosMes.filter((item) => item.idCasa === casa.id);
+    const ocupacion = ocupacionCasa.filter((item) => item.casa === casa.id);
     if (casa.linkimagen) {
       const imagen = cloudinary.url(casa.linkimagen, {
         width: 350,
@@ -26,18 +29,25 @@ router.get("/casas", async function (req, res, next) {
       return {
         ...casa,
         precio,
+        ocupacion,
         imagen,
       };
     } else {
       return {
         ...casa,
         precio,
+        ocupacion,
         imagen: "",
       };
     }
   });
 
   res.json(casas);
+});
+
+router.get("/ocupaciones", async function (req, res, next) {
+  var ocupaciones = await areasModel.getOcupaciones();
+  res.json(ocupaciones);
 });
 
 router.get("/areas", async function (req, res, next) {
