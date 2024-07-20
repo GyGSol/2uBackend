@@ -14,7 +14,7 @@ async function getOcupaciones() {
 
 async function getOcupacionesCasas() {
   try {
-    var query = "SELECT o.fechaDesde fechaDesde, o.fechaHasta, o.casa FROM ocupaciones o ;";
+    var query = "SELECT DATE_FORMAT(o.fechaDesde,'%Y-%m-%d') fechaDesde, DATE_FORMAT(o.fechaHasta,'%Y-%m-%d') fechaHasta, o.casa FROM ocupaciones o ;";
     var rows = await pool.query(query);
 
     return rows;
